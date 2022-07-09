@@ -1,0 +1,21 @@
+type Album {
+    _id: ID!
+    name: String
+    released: Int
+    artists: [Artist]
+    bands: [Band]
+    tracks: [Track]
+    genres: [Genre]
+    image: String
+}
+input PropAlbum {
+    name: String
+    released: Int
+    tracks: [ID]
+    image: String
+}
+input UpdateAlbum {
+  data: PropAlbum!
+  id: ID!
+}
+

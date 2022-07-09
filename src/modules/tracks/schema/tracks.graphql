@@ -1,0 +1,28 @@
+type Track {
+    _id: ID!
+    title: String!
+    album: Album
+    artists: [Artist]
+    bands: [Band]
+    duration: Int
+    released: Int
+    genres: [Genre]
+}
+input TrackInput {
+    title: String
+    duration: Int
+    released: Int
+    albumId: ID
+    artistsIds: [ID]
+    bandsIds: [ID]
+    genresIds: [ID]
+}
+type Deleted {
+  acknowledged: Boolean!
+  deletedCount: Int
+}
+input UpdateTrack {
+  data: TrackInput!
+  id: ID!
+}
+
