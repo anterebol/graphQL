@@ -2,17 +2,20 @@
 import { buildSchema } from 'graphql';
 import { graphqlHTTP } from 'express-graphql';
 import cors from 'cors';
-import { regist, login } from "./src/modules/regist/resolvers/regist";
+import { register, login } from "./src/modules/regist/resolvers/regist";
 import { tracks, deleteTrack, addTrack, track, updateTrack } from "./src/modules/tracks/resolvers/tracks";
 import { albums, deleteAlbum, addAlbum, updateAlbum, album } from './src/modules/albums/resolvers/albums';
 import { genre, deleteGenre, addGenre, updateGenre, genres } from './src/modules/genres/resolvers/genres';
 import { band, deleteBand, addBand, updateBand, bands } from './src/modules/bands/resolvers/bands';
+import { artist, deleteArtist, addArtist, updateArtist, artists } from './src/modules/artists/resolvers/artists';
 import fs from 'fs/promises';
+import depthLimit from 'graphql-depth-limit';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const PORT = process.env.PORT;
+const DEPTH = Number(process.env.DEPTH);
 
 export const app = express();
 
@@ -32,7 +35,7 @@ async function start() {
     app.use(cors());
   
     const root = {
-      regist, 
+      register, 
       login,
       tracks,
       addTrack,
@@ -53,15 +56,21 @@ async function start() {
       bands,
       deleteBand,
       addBand,
-      updateBand
+      updateBand,
+      artist, 
+      deleteArtist, 
+      addArtist, 
+      updateArtist, 
+      artists
     }
   
     app.use('/graphql', graphqlHTTP({
       graphiql: true,
       schema,
-      rootValue: root
+      rootValue: root,
+      validationRules: [depthLimit(DEPTH)]
     }));
     app.listen(PORT, () => console.log(`server work on port => ${PORT}`));
 }
 
-start();
+start();"62c96255b1b218fa48f1e974"

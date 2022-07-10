@@ -4,7 +4,7 @@ dotenv.config();
 
 const PATH = process.env.USER_PATH;
 
-export const regist = async (data) => {
+export const register = async (data) => {
   const res = await registUser(data, PATH);
   return res.data;
 }

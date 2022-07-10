@@ -9,9 +9,12 @@ type Album {
     image: String
 }
 input PropAlbum {
-    name: String
+    name: String!
     released: Int
-    tracks: [ID]
+    trackIds: [ID]
+    artistsIds: [ID]
+    bandsIds: [ID]
+    genresIds: [ID]
     image: String
 }
 input UpdateAlbum {

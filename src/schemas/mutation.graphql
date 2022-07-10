@@ -1,6 +1,6 @@
 type Mutation {
-  regist(user: User!): UserData
-  login(login: Login!): JWT!
+  user(user: User!): UserData
+  jwt(login: Login!): JWT!
   deleteTrack(id: ID!): Deleted
   addTrack(data: TrackInput!): Track
   updateTrack(data: UpdateTrack!): Track
@@ -13,4 +13,7 @@ type Mutation {
   deleteBand(id: ID!): Deleted
   addBand(data: BandInput!): Band
   updateBand(data: UpdateBand!): Band
+  deleteArtist(id: ID!): Deleted
+  addArtist(data: ArtistInput!): Artist
+  updateArtist(data: UpdateArtist!): Artist
 }

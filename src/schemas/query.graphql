@@ -7,4 +7,6 @@ type Query {
   genres: [Genre]
   band(id: ID!): Band
   bands: [Band]
+  artists: [Artist]
+  artist(id: ID!): Artist
 }

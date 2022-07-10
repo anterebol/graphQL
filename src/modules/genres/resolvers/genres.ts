@@ -5,10 +5,13 @@ dotenv.config();
 
 const PATH = process.env.GENRES_PATH;
 
-export const genres = async () => {
-  const res = await getAll(PATH);
-  console.log(res)
-  return res.data.items;
+export const genres = async (ids = null) => {
+  if (ids) {
+    return await Promise.all(ids.map(async (id) => await findGenreFor({id})));
+  } else {
+    const res = await getAll(PATH);
+    return res.data.items;
+  }
 }
 export const deleteGenre = async (id) => {
   const res = await del(PATH, id);
@@ -25,11 +28,12 @@ export const updateGenre = async(data) => {
 export const genre = async(id) => {
   const res = await getAll(PATH);
   let answer = res.data.items.filter(item => item._id === id.id)[0];
-  console.log(answer)
   return answer;
 }
 export const findGenreFor = async(id) => {
-  const res = await getAll(PATH);
-  const d = res.data.items.filter(item => item._id === id.id);
-  return d[0];
+  if (id.id) {
+    const res = await getAll(PATH);
+    const data = res.data.items.filter(item => item._id === id.id)[0];  
+    return data;
+  }
 }
