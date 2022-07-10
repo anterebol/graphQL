@@ -1,5 +1,6 @@
 import { getAll, del, add, update } from "../../../requests/requests";
-import { findBandFor, bands } from "../../bands/resolvers/bands";
+import { findBandFor } from "../../bands/controller/bands";
+import { bands } from "../../bands/service/bands";
 
 import dotenv from 'dotenv';
 dotenv.config();

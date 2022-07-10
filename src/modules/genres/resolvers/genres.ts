@@ -1,5 +1,5 @@
 import { getAll, del, add, update } from "../../../requests/requests";
-import { findAlbumFor } from "../../albums/resolvers/albums";
+import { findAlbumFor } from "../../albums/controller/albums";
 import dotenv from 'dotenv';
 dotenv.config();
 

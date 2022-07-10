@@ -1,5 +1,5 @@
 type Band {
-    _id: ID!
+    id: ID!
     name: String
     origin: String
     website: String
@@ -18,12 +18,12 @@ input UpdateBand {
   id: ID!
 }
 type Member {
-    artist: String
+    artist: Artist
     instrument: String
     years: [String]
 }
 input MemberInput {
-    artist: String
+    artist: ID!
     instrument: String
     years: [String]
 }

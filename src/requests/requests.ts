@@ -2,7 +2,7 @@ import axios from "axios";
 import dotenv from 'dotenv';
 dotenv.config();
 
-const jwt = process.env.jwt;
+let jwt = process.env.jwt;
 
 export const registUser = async (data, url: string) => {
   try {
@@ -29,6 +29,56 @@ export const loginUser = async (data, url: string) => {
       headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
+      }
+    });
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+export async function getFavourites() {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `http://localhost:3007/v1/favourites`, 
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + jwt
+      }
+    });
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+export async function getFavourite(id) {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: `http://localhost:3007/v1/favourites/${id}`, 
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + jwt
+      }
+    });
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+export async function updateFavourite(data, type) {
+  try {
+    data.data.type = type; 
+    const res = await axios({
+      method: 'PUT',
+      url: `http://localhost:3007/v1/favourites/add`, 
+      data: data.data,
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + jwt
       }
     });
     return res;
@@ -68,7 +118,6 @@ export const add = async (url, data) => {
 }
 
 export const del = async (url: string, id) => {
-  console.log(id)
   try {
     const res = await axios({
       method: 'DELETE',

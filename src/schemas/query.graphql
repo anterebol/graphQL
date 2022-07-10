@@ -9,4 +9,5 @@ type Query {
   bands: [Band]
   artists: [Artist]
   artist(id: ID!): Artist
+  favourites: Favourite
 }

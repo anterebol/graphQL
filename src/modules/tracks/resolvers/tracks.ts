@@ -1,6 +1,7 @@
 import { getAll, del, add, update } from "../../../requests/requests";
-import { findBandFor, bands } from "../../bands/resolvers/bands";
-import { findAlbumFor, albums } from "../../albums/resolvers/albums";
+import { bands } from "../../bands/service/bands";
+import { albums } from "../../albums/service/albums";
+import { findAlbumFor } from "../../albums/controller/albums";
 import { findGenreFor, genres } from "../../genres/resolvers/genres";
 import { artists } from "../../artists/resolvers/artists";
 import dotenv from 'dotenv';
