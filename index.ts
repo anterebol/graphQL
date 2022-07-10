@@ -2,7 +2,7 @@
 import { buildSchema } from 'graphql';
 import { graphqlHTTP } from 'express-graphql';
 import cors from 'cors';
-import { register, login } from "./src/modules/regist/resolvers/regist";
+import { register, jwt } from "./src/modules/regist/resolvers/regist";
 import { tracks, deleteTrack, addTrack, track, updateTrack } from "./src/modules/tracks/resolvers/tracks";
 import { albums, deleteAlbum, addAlbum, updateAlbum, album } from './src/modules/albums/service/albums';
 import { genre, deleteGenre, addGenre, updateGenre, genres } from './src/modules/genres/resolvers/genres';
@@ -39,7 +39,7 @@ async function start() {
   
     const root = {
       register, 
-      login,
+      jwt,
       tracks,
       addTrack,
       deleteTrack,

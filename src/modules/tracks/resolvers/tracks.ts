@@ -21,11 +21,12 @@ export const tracks = async (ids = null, depth = 0) => {
     } else {
       const res = await getAll(PATH);
       const data = await Promise.all(res.data.items.map(async (item) => {
-      item.album = await findAlbumFor({id: item.albumId}, depth);
-      item.genres = await genres(item.genresIds);
-      item.bands = await bands(item.bandsIds);
-      item.artists = await artists(item.artistsIds);
-      return item;
+        item.id = item._id
+        item.album = await findAlbumFor({id: item.albumId}, depth);
+        item.genres = await genres(item.genresIds);
+        item.bands = await bands(item.bandsIds);
+        item.artists = await artists(item.artistsIds);
+        return item;
       }));
       return data;
     }
@@ -37,15 +38,16 @@ export const deleteTrack = async (id) => {
 }
 export const addTrack = async (data) => {
   const res = await add(PATH, data);
-  return res.data;
+  return await findTrackFor({id: res.data._id});
 }
 export const updateTrack = async(data) => {
   const res = await update(PATH, data.data);
-  return res.data;
+  return await findTrackFor({id: res.data._id});
 }
 export const track = async(id, depth = 0) => {
   const res = await getAll(PATH);
   let data = res.data.items.filter(item => item._id === id.id);
+  data[0].id = data[0]._id;
   data[0].album = await findAlbumFor({id: data[0].albumId}, depth);
   data[0].genres = await genres(data[0].genresIds);
   data[0].bands = await bands(data[0].bandsIds);
@@ -55,6 +57,7 @@ export const track = async(id, depth = 0) => {
 export const findTrackFor = async(id, depth = 0) => {
   const res = await getAll(PATH);
   const data = res.data.items.filter(item => item._id === id.id)[0];
+  data.id = data._id;
   data.album = await findAlbumFor({id: data.albumId}, depth);
   data.genres = await genres(data.genresIds);
   data.bands = await bands(data.bandsIds);

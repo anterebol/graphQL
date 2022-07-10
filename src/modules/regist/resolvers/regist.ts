@@ -8,7 +8,7 @@ export const register = async (data) => {
   const res = await registUser(data, PATH);
   return res.data;
 }
-export const login = async (data) => {
+export const jwt = async (data) => {
   const res = await loginUser(data, PATH);
   return res.data;
 }

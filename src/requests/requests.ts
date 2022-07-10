@@ -32,6 +32,7 @@ export const loginUser = async (data, url: string) => {
       }
     });
     jwt = res.data.jwt;
+    console.log(jwt)
     return res;
   } catch (err) {
     console.log(err);
