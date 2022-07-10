@@ -31,6 +31,7 @@ export const loginUser = async (data, url: string) => {
         'Content-Type': 'application/json',
       }
     });
+    jwt = res.data.jwt;
     return res;
   } catch (err) {
     console.log(err);
