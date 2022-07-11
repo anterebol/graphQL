@@ -1,0 +1,12 @@
+type Favourite {
+  id: ID!
+  userId: ID
+  bands: [Band]
+  genres: [Genre]
+  artists: [Artist]
+  tracks: [Track]
+}
+input FavouriteInput {
+  id: ID!
+  userId: ID
+}

@@ -1,0 +1,13 @@
+type Query {
+  tracks: [Track]
+  track(id: ID!): [Track]
+  albums: [Album]
+  album(id: ID!): Album
+  genre(id: ID!): Genre
+  genres: [Genre]
+  band(id: ID!): Band
+  bands: [Band]
+  artists: [Artist]
+  artist(id: ID!): Artist
+  favourites: Favourite
+}

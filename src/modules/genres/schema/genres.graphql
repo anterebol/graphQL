@@ -1,0 +1,17 @@
+type Genre {
+    id: ID!
+    name: String
+    description: String
+    country: String
+    year: Int
+}
+input PropGenre {
+    name: String
+    description: String
+    country: String
+    year: Int
+}
+input UpdateGenre {
+    data: PropGenre
+    id: ID!
+}

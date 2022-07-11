@@ -1,0 +1,29 @@
+type Band {
+    id: ID!
+    name: String
+    origin: String
+    website: String
+    genres: [Genre]
+    members: [Member]
+}
+input BandInput {
+    name: String
+    origin: String
+    members: [MemberInput]
+    website: String
+    genresIds: [String]
+}
+input UpdateBand {
+  data: TrackInput!
+  id: ID!
+}
+type Member {
+    artist: Artist
+    instrument: String
+    years: [String]
+}
+input MemberInput {
+    artist: ID!
+    instrument: String
+    years: [String]
+}
